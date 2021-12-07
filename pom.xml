@@ -8,14 +8,21 @@
 		<version>2.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>com.baronij</groupId>
 	<artifactId>mlenginemanager</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mlenginemanager</name>
 	<description>Pipeline to manage and convert files to be used by machine learning engines</description>
+
 	<properties>
+		<basedir>/home/jabroni/IdeaProjects/ml-engine-manager</basedir>
+
 		<java.version>17</java.version>
+		<swagger.version>2.9.2</swagger.version>
+		<jsonschema2pojo.version>0.5.1</jsonschema2pojo.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -25,27 +32,95 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-test</artifactId>
+		</dependency>
+
+		<!-- unit tests -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+		</dependency>
+
+		<!-- jsonschema2pojo -->
+		<dependency>
+			<groupId>org.jsonschema2pojo</groupId>
+			<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+			<version>${jsonschema2pojo.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jsonschema2pojo</groupId>
+			<artifactId>jsonschema2pojo-core</artifactId>
+			<version>${jsonschema2pojo.version}</version>
+		</dependency>
+
+		<!-- Springfox Swagger UI -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
 	</dependencies>
 
+	<!-- Package as an executable jar -->
 	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>16</source>
-					<target>16</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>1</id>
+						<configuration>
+							<annotationStyle>jackson2</annotationStyle>
+							<includeAdditionalProperties>false</includeAdditionalProperties>
+							<sourcePaths>
+								<sourcePath>${basedir}/src/main/resources/schema/</sourcePath>
+							</sourcePaths>
+						</configuration>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+<!--					<execution>-->
+<!--						<id>2</id>-->
+<!--						<configuration>-->
+<!--							<annotationStyle>jackson2</annotationStyle>-->
+<!--							<includeAdditionalProperties>false</includeAdditionalProperties>-->
+<!--							<sourcePaths>-->
+<!--								<sourcePath>${project.basedir}/src/main/resource/jsd/your_schema2.json</sourcePath>-->
+<!--							</sourcePaths>-->
+<!--							<targetPackage>your target package</targetPackage>-->
+<!--						</configuration>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Mongo Schema",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "maxLength": 50
+    },
+    "loan": {
+      "type": "object",
+      "properties": {
+        "loanID": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "loanType": {
+          "type": "string",
+          "enum": [
+            "Purchase",
+            "Refinance"
+          ]
+        },
+        "helocIndicator": {
+          "type": "string",
+          "enum": [
+            "Traditional",
+            "Other"
+          ]
+        }
+      }
+    },
+    "model_marker": {
+      "type": "string",
+      "enum": [
+        "NaiveBayes"
+      ]
+    },
+    "model_metadata": {
+      "type": "object",
+      "properties": {
+        "ranges": {
+          "type": "array",
+          "description": "java.util.List<RangeContainer>",
+          "items": {
+            "$ref": "#/RangeContainer"
+          }
+        },
+        "frequencies": {
+          "type": "array",
+          "description": "java.util.List<FrequencyContainer>",
+          "items": {
+            "$ref": "#/FrequencyContainer"
+          }
+        }
+      }
+    },
+    "additionalProperties": false
+  },
+  "RangeContainer": {
+    "type": "object",
+    "properties": {
+      "range": {
+        "type": "double"
+      }
+    }
+  },
+  "FrequencyContainer": {
+    "type": "object",
+    "properties": {
+      "range": {
+        "type": "double"
+      }
+    }
+  }
+}

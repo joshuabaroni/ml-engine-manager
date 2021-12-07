@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "LoanData Schema",
+  "type": "object",
+  "properties": {
+    "loanId": {
+      "type": "string"
+    },
+    "loanType": {
+      "type": "string",
+      "enum": [
+        "Investment",
+        "PrimaryResidence",
+        "SecondHome"
+      ]
+    },
+    "loanInformation": {
+      "type": "string",
+      "enum": [
+        "Purchase",
+        "Refinance",
+        "Construction"
+      ]
+    },
+    "loanProgram": {
+      "type": "string",
+      "enum": [
+        "AMinus",
+        "AffordableGold32",
+        "CreditFlex",
+        "HomeOpportunity",
+        "SettleAmerica"
+      ]
+    },
+    "amount": {
+      "type": "double"
+    },
+    "homeownerSalary": {
+      "type": "double"
+    }
+  },
+  "additionalProperties": false
+}

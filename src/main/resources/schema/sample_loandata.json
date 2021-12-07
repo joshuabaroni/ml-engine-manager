@@ -1,0 +1,8 @@
+{
+  "loanId": "12345",
+  "loanType": "Primary Residence",
+  "loanInformation": "Purchase",
+  "loanProgram": "CreditFlex",
+  "amount": 400000,
+  "homeownerSalary": 80000
+}

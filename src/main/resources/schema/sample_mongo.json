@@ -1,0 +1,14 @@
+{
+  "_id": "string",
+  "loan": {
+    "loanID": "string",
+    "loanType": "enum",
+    "helocIndicator": "enum"
+  },
+  "model_marker": "enum",
+  "model_metadata": {
+    "ranges": "object",
+    "frequencies": "object"
+  }
+
+}
