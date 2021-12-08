@@ -1,0 +1,18 @@
+{
+  "RangeContainer": {
+    "type": "object",
+    "properties": {
+      "range": {
+        "type": "double"
+      }
+    }
+  },
+  "FrequencyContainer": {
+    "type": "object",
+    "properties": {
+      "range": {
+        "type": "double"
+      }
+    }
+  }
+}
